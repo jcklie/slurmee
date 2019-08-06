@@ -13,7 +13,7 @@ def get_job_id() -> Optional[int]:
     Returns:
         job_id: The job id if running in slurm else `None`
     """
-    return _to_int(os.getenv('SLURM_JOB_ID'))
+    return _to_int(os.getenv("SLURM_JOB_ID"))
 
 
 def get_job_name() -> Optional[str]:
@@ -22,7 +22,7 @@ def get_job_name() -> Optional[str]:
     Returns:
         job_name: The job name if running in slurm else `None`
     """
-    return os.getenv('SLURM_JOB_NAME')
+    return os.getenv("SLURM_JOB_NAME")
 
 
 def get_submit_dir() -> Optional[str]:
@@ -32,7 +32,7 @@ def get_submit_dir() -> Optional[str]:
     Returns:
         submit_dir: The submission directory name if running in slurm else `None`
     """
-    return os.getenv('SLURM_SUBMIT_DIR')
+    return os.getenv("SLURM_SUBMIT_DIR")
 
 
 def get_job_nodelist() -> Optional[str]:
@@ -48,7 +48,7 @@ def get_job_nodelist() -> Optional[str]:
     Returns:
         node_list: List of nodes allocated for this job if running in slurm else `None`
     """
-    return os.getenv('SLURM_JOB_NODELIST')
+    return os.getenv("SLURM_JOB_NODELIST")
 
 
 def get_submit_host() -> Optional[str]:
@@ -57,7 +57,7 @@ def get_submit_host() -> Optional[str]:
     Returns:
         job_id: The submission host name if running in slurm else `None`
     """
-    return os.getenv('SLURM_SUBMIT_HOST')
+    return os.getenv("SLURM_SUBMIT_HOST")
 
 
 def get_job_num_nodes() -> Optional[int]:
@@ -66,7 +66,7 @@ def get_job_num_nodes() -> Optional[int]:
     Returns:
         num_nodes: Number of nodes allocated this job if running in slurm else `None`
     """
-    return _to_int(os.getenv('SLURM_JOB_NUM_NODES'))
+    return _to_int(os.getenv("SLURM_JOB_NUM_NODES"))
 
 
 def get_cpus_on_node() -> Optional[int]:
@@ -75,7 +75,7 @@ def get_cpus_on_node() -> Optional[int]:
     Returns:
         cpus_on_node: The number of CPUs on the allocated node if running in slurm else `None`.
     """
-    return _to_int(os.getenv('SLURM_CPUS_ON_NODE'))
+    return _to_int(os.getenv("SLURM_CPUS_ON_NODE"))
 
 
 def get_ntasks() -> Optional[int]:
@@ -84,7 +84,7 @@ def get_ntasks() -> Optional[int]:
     Returns:
         ntaskts: The number of tasks per node if running in slurm else `None`.
     """
-    return _to_int(os.getenv('SLURM_NTASKS'))
+    return _to_int(os.getenv("SLURM_NTASKS"))
 
 
 def get_nodeid() -> Optional[int]:
@@ -96,7 +96,7 @@ def get_nodeid() -> Optional[int]:
         ntaskts: The node id if running in slurm else `None`.
     """
 
-    return _to_int(os.getenv('SLURM_NODEID'))
+    return _to_int(os.getenv("SLURM_NODEID"))
 
 
 def _to_int(s: Optional[str]) -> Optional[int]:

@@ -27,6 +27,10 @@ if slurmee.get_job_id():
 
 ## Development
 
-This package has no external dependencies. The tests can be run via 
+This package has no external runtime dependencies. The tests can be run via 
 
     python3 -m unittest
+
+To install the dependencies for generating the docs and releasing the package, in a virtual environment, run
+
+    pip install -e ".[test,dev,doc]"

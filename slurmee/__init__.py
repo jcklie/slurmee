@@ -9,5 +9,5 @@ __all__ = [
     get_job_num_nodes,
     get_cpus_on_node,
     get_ntasks,
-    get_nodeid
+    get_nodeid,
 ]

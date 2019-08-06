@@ -1,0 +1,5 @@
+[run]
+source=slurmee
+omit=
+    setup.py
+    slurmee/__init__.py
