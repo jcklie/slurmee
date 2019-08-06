@@ -1,5 +1,5 @@
 test:
-	python3 -m unittest
+	python -m unittest
 
 black:
 	black -l 120 slurmee/

@@ -31,7 +31,7 @@ if slurmee.get_job_id():
 
 This package has no external runtime dependencies. The tests can be run via 
 
-    python3 -m unittest
+    make test
 
 To install the dependencies for generating the docs and releasing the package, in a virtual environment, run
 
