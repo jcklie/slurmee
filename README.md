@@ -1,5 +1,7 @@
 # slurmee
 
+[![Build Status](https://travis-ci.org/jcklie/slurmee.svg?branch=master)](https://travis-ci.org/jcklie/slurmee)
+
 Simple Python 3 package to get information when running Python programs in [slurm](https://slurm.schedmd.com/documentation.html). 
 
 ## Usage
@@ -18,7 +20,7 @@ print(f"Slurm ntasks: {slurmee.get_ntasks()}")
 print(f"Slurm nodeid: {slurmee.get_nodeid()}")
 ```
 
-Methods return `None` if not running inside of slurm. This can be used to check e.g. 
+Methods return `None` if not running inside of slurm. It can be used to check this condition e.g. 
 
 ```python
 if slurmee.get_job_id():
