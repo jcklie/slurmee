@@ -55,7 +55,7 @@ def get_submit_host() -> Optional[str]:
     """ Gets the name of the submission host.
 
     Returns:
-        job_id: The submission host name if running in slurm else `None`
+        submit_host: The submission host name if running in slurm else `None`
     """
     return os.getenv("SLURM_SUBMIT_HOST")
 
@@ -82,7 +82,7 @@ def get_ntasks() -> Optional[int]:
     """ Get the number of tasks per node.
 
     Returns:
-        ntaskts: The number of tasks per node if running in slurm else `None`.
+        ntasks: The number of tasks per node if running in slurm else `None`.
     """
     return _to_int(os.getenv("SLURM_NTASKS"))
 
@@ -93,7 +93,7 @@ def get_nodeid() -> Optional[int]:
     The node id is an index to node running on relative to nodes assigned to job.
 
     Returns:
-        ntaskts: The node id if running in slurm else `None`.
+        nodeid: The node id if running in slurm else `None`.
     """
 
     return _to_int(os.getenv("SLURM_NODEID"))
