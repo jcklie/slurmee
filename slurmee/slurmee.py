@@ -108,11 +108,13 @@ def get_job_array_info() -> Optional[Dict[str, int]]:
         job_array_info: A dict with job array information if running in slurm and inside a job array else `None`.
     :return:
     """
-    d = {"array_job_id": "SLURM_ARRAY_JOB_ID",
-         "task_id": "SLURM_ARRAY_TASK_ID",
-         "task_count": "SLURM_ARRAY_TASK_COUNT",
-         "task_max": "SLURM_ARRAY_TASK_MAX",
-         "task_min": "SLURM_ARRAY_TASK_MIN"}
+    d = {
+        "array_job_id": "SLURM_ARRAY_JOB_ID",
+        "task_id": "SLURM_ARRAY_TASK_ID",
+        "task_count": "SLURM_ARRAY_TASK_COUNT",
+        "task_max": "SLURM_ARRAY_TASK_MAX",
+        "task_min": "SLURM_ARRAY_TASK_MIN",
+    }
 
     if os.getenv(d["array_job_id"]) is None:
         return None
