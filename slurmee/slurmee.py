@@ -4,7 +4,7 @@ https://slurm.schedmd.com/sbatch.html#SECTION_OUTPUT-ENVIRONMENT-VARIABLES
 """
 
 import os
-from typing import List, Optional
+from typing import Optional, Dict
 
 
 def get_job_id() -> Optional[int]:
@@ -55,7 +55,7 @@ def get_submit_host() -> Optional[str]:
     """ Gets the name of the submission host.
 
     Returns:
-        job_id: The submission host name if running in slurm else `None`
+        submit_host: The submission host name if running in slurm else `None`
     """
     return os.getenv("SLURM_SUBMIT_HOST")
 
@@ -82,7 +82,7 @@ def get_ntasks() -> Optional[int]:
     """ Get the number of tasks per node.
 
     Returns:
-        ntaskts: The number of tasks per node if running in slurm else `None`.
+        ntasks: The number of tasks per node if running in slurm else `None`.
     """
     return _to_int(os.getenv("SLURM_NTASKS"))
 
@@ -93,10 +93,33 @@ def get_nodeid() -> Optional[int]:
     The node id is an index to node running on relative to nodes assigned to job.
 
     Returns:
-        ntaskts: The node id if running in slurm else `None`.
+        nodeid: The node id if running in slurm else `None`.
     """
 
     return _to_int(os.getenv("SLURM_NODEID"))
+
+
+def get_job_array_info() -> Optional[Dict[str, int]]:
+    """ Get job array information.
+
+    Refer to https://slurm.schedmd.com/job_array.html for interpreting the returned values.
+
+    Returns:
+        job_array_info: A dict with job array information if running in slurm and inside a job array else `None`.
+    :return:
+    """
+    d = {
+        "array_job_id": "SLURM_ARRAY_JOB_ID",
+        "task_id": "SLURM_ARRAY_TASK_ID",
+        "task_count": "SLURM_ARRAY_TASK_COUNT",
+        "task_max": "SLURM_ARRAY_TASK_MAX",
+        "task_min": "SLURM_ARRAY_TASK_MIN",
+    }
+
+    if os.getenv(d["array_job_id"]) is None:
+        return None
+
+    return {k: _to_int(os.getenv(env_var)) for k, env_var in d.items()}
 
 
 def _to_int(s: Optional[str]) -> Optional[int]:

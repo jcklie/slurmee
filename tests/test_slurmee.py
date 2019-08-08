@@ -83,3 +83,32 @@ class TestSlurmee(unittest.TestCase):
     def test_get_nodeid_when_absent(self):
         os.environ.clear()
         self.assertEqual(slurmee.get_nodeid(), None)
+
+
+class TestSlurmeeJobArrays(unittest.TestCase):
+    def tearDown(self):
+        os.environ.clear()
+
+    def test_get_job_array_info(self):
+        os.environ["SLURM_JOB_ID"] = "37"
+        os.environ["SLURM_ARRAY_JOB_ID"] = "36"
+        os.environ["SLURM_ARRAY_TASK_ID"] = "2"
+        os.environ["SLURM_ARRAY_TASK_COUNT"] = "3"
+        os.environ["SLURM_ARRAY_TASK_MAX"] = "3"
+        os.environ["SLURM_ARRAY_TASK_MIN"] = "1"
+
+        self.assertEqual(slurmee.get_job_id(), 37)
+
+        job_array_info = slurmee.get_job_array_info()
+        self.assertEqual(job_array_info["array_job_id"], 36)
+        self.assertEqual(job_array_info["task_id"], 2)
+        self.assertEqual(job_array_info["task_count"], 3)
+        self.assertEqual(job_array_info["task_max"], 3)
+        self.assertEqual(job_array_info["task_min"], 1)
+
+    def test_get_job_array_info_when_not_in_slurm(self):
+        self.assertEqual(slurmee.get_job_array_info(), None)
+
+    def test_get_job_array_info_when_not_in_job_array(self):
+        os.environ["SLURM_JOB_ID"] = "42"
+        self.assertEqual(slurmee.get_job_array_info(), None)
